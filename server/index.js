@@ -94,13 +94,8 @@ const loadRooms = async () => {
   try {
     data = fs.readFileSync("rooms.json", "utf8");
   } catch (ex) {
-    console.log("No rooms.json file found, using default file");
-    try {
-      data = fs.readFileSync("default.json", "utf8");
-    } catch (ex) {
-      console.log("No default.json file found, exiting");
-      process.exit(1);
-    }
+    console.log("No rooms.json file found, using default empty rooms array.");
+    data = '[]'; // Default to an empty array if rooms.json is not found
   }
   data = JSON.parse(data);
   data.forEach((roomItem) => {
@@ -118,7 +113,6 @@ const loadRooms = async () => {
     rooms.push(room);
   });
 };
-
 loadRooms();
 
 // UTILS
