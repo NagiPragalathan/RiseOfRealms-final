@@ -241,7 +241,8 @@ Player.prototype.update = function() {
         }
 
         // Check if player's position meets the condition for popup
-        if (this.pos.x >= 100 && this.pos.x <= 110 && this.pos.y >= 80 && this.pos.y <= 88) {
+        if (this.pos.x >= 100 && this.pos.x <= 110 && this.pos.y >= 80 && this.pos.y <= 88 && this.pos.z === 16 ) {
+
             // Show the popup only once
             if (!isPopupShown) {
                 const iframePopup = document.getElementById('iframePopup');

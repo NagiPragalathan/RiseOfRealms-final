@@ -36,7 +36,7 @@ const app = express();
 app.use(bodyParser.json()); // To parse incoming request bodies
 app.use(cors()); // Enable CORS for all requests
 
-const origin = process.env.CLIENT_URL || "http://localhost:5173";
+const origin = '*';
 const io = new Server({
   cors: {
     origin,
@@ -94,8 +94,13 @@ const loadRooms = async () => {
   try {
     data = fs.readFileSync("rooms.json", "utf8");
   } catch (ex) {
-    console.log("No rooms.json file found, using default empty rooms array.");
-    data = '[]'; // Default to an empty array if rooms.json is not found
+    console.log("No rooms.json file found, using default file");
+    try {
+      data = fs.readFileSync("default.json", "utf8");
+    } catch (ex) {
+      console.log("No default.json file found, exiting");
+      process.exit(1);
+    }
   }
   data = JSON.parse(data);
   data.forEach((roomItem) => {
@@ -113,6 +118,7 @@ const loadRooms = async () => {
     rooms.push(room);
   });
 };
+
 loadRooms();
 
 // UTILS

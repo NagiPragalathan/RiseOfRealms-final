@@ -292,7 +292,7 @@ export const UI = () => {
                 </button>
                 <div className="flex justify-between px-5 items-center">
                   <button className="py-2 px-4 h-fit rounded-full bg-slate-500 text-white drop-shadow-md cursor-pointer hover:bg-slate-800 transition-colors">
-                    <Link to="/build">Build</Link>
+                    <Link to="http://localhost:3000/multiplayer.html">Build</Link>
                   </button>
                 </div>
               </div>
